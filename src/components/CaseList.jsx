@@ -7,6 +7,8 @@ import { Search, Filter, Sparkles, Download } from 'lucide-react'
 import { formatCurrency, getPriorityColor, getStatusColor } from '@/lib/utils'
 import { mockCases } from '@/data/mockData'
 import { prioritizeCases } from '@/lib/ai'
+import * as XLSX from 'xlsx'
+
 
 export default function CaseList() {
   const [cases, setCases] = useState(mockCases)
@@ -34,7 +36,6 @@ export default function CaseList() {
           return c
         })
         
-        // Sort by AI priority score
         updatedCases.sort((a, b) => (b.aiPriorityScore || 0) - (a.aiPriorityScore || 0))
         setCases(updatedCases)
       }
@@ -45,6 +46,29 @@ export default function CaseList() {
       setLoading(false)
     }
   }
+
+  const handleExportExcel = () => {
+  const exportData = filteredCases.map(c => ({
+    "Case ID": c.id,
+    "Customer Name": c.customerName,
+    "Amount": c.amount,
+    "Aging (Days)": c.aging,
+    "Priority": c.priority,
+    "Status": c.status,
+    "DCA": c.dca || "Unassigned",
+    "AI Priority Score": c.aiPriorityScore ?? "",
+    "AI Recovery Probability": c.aiRecoveryProb ?? "",
+    "AI Recommendation": c.aiRecommendation ?? ""
+  }))
+
+  const worksheet = XLSX.utils.json_to_sheet(exportData)
+
+  const workbook = XLSX.utils.book_new()
+  XLSX.utils.book_append_sheet(workbook, worksheet, "Cases")
+
+  XLSX.writeFile(workbook, "DCA_Cases_Export.xlsx")
+}
+
 
   const filteredCases = cases.filter(c => {
     const matchesSearch = c.customerName.toLowerCase().includes(searchTerm.toLowerCase()) || 
@@ -58,7 +82,7 @@ export default function CaseList() {
       <div className="flex justify-between items-center">
         <h1 className="text-3xl font-bold">Case Management</h1>
         <div className="flex gap-2">
-          <Button variant="outline" size="sm">
+          <Button variant="outline" size="sm" onClick={handleExportExcel}>
             <Download className="h-4 w-4 mr-2" />
             Export
           </Button>
