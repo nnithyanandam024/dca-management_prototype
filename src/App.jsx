@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import { LayoutDashboard, List, BarChart3, Building2, Users as UsersIcon, LogOut } from 'lucide-react'
+import { Shield } from 'lucide-react'
 import Dashboard from './components/Dashboard'
 import CaseList from './components/CaseList'
 import Analytics from './components/Analytics'
 import DCAPortal from './components/DCAPortal'
 import DCAManagement from './components/DCAManagement'
+import SLADashboard from './components/SLADashboard'
 import LoginPage from './components/LoginPage'
 import ThemeToggle from './components/ThemeToggle'
 import { Button } from './components/ui/button'
@@ -30,7 +32,6 @@ function AppContent() {
     return <LoginPage />
   }
 
-  // Navigation based on role
   const allNavigation = [
     { 
       id: 'dashboard', 
@@ -53,25 +54,32 @@ function AppContent() {
       roles: ['admin'],
       component: DCAManagement
     },
-    { 
-      id: 'analytics', 
-      name: 'Analytics', 
-      icon: BarChart3, 
-      roles: ['admin', 'viewer'],
-      component: Analytics
-    },
-    { 
+     { 
       id: 'my-cases', 
       name: 'My Cases', 
       icon: Building2, 
       roles: ['dca'],
       component: DCAPortal
     },
+    { 
+    id: 'sla-monitoring',  
+    name: 'SLA Monitoring', 
+    icon: Shield, 
+    roles: ['admin', 'dca'],
+    component: SLADashboard
+   },
+   { 
+      id: 'analytics', 
+      name: 'Analytics', 
+      icon: BarChart3, 
+      roles: ['admin', 'viewer'],
+      component: Analytics
+    },
   ]
 
   const navigation = allNavigation.filter(item => hasPermission(item.roles))
 
-  // Set default view based on role
+ 
   const defaultView = user.role === 'dca' ? 'my-cases' : 'dashboard'
   if (currentView === 'dashboard' && user.role === 'dca') {
     setCurrentView(defaultView)
@@ -79,7 +87,6 @@ function AppContent() {
 
   const CurrentComponent = navigation.find(nav => nav.id === currentView)?.component || Dashboard
 
-  // Role badge colors
   const getRoleBadge = (role) => {
     const badges = {
       admin: { color: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200', label: 'Admin' },
