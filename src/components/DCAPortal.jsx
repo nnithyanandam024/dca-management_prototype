@@ -5,11 +5,13 @@ import { Badge } from './ui/badge'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from './ui/table'
 import { Bell, CheckCircle, Clock, Mail, Phone } from 'lucide-react'
 import { formatCurrency, getStatusColor, formatDate } from '@/lib/utils'
+import { useAuth } from '@/contexts/AuthContext'
 import { mockCases } from '@/data/mockData'
 
 export default function DCAPortal() {
+  const { user } = useAuth()
   const [selectedDCA] = useState('Alpha Collections')
-  const assignedCases = mockCases.filter(c => c.dca === selectedDCA)
+  const assignedCases = mockCases.filter(c => c.dca === user.dcaName)
   const pendingCases = assignedCases.filter(c => c.status === 'assigned' || c.status === 'in-progress')
 
   const handleStatusUpdate = (caseId, newStatus) => {

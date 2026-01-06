@@ -1,16 +1,66 @@
-# React + Vite
+# AI-Powered DCA Management Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📌 Overview
+This project reimagines **Debt Collection Agency (DCA) management** using a **digital-first and AI-driven approach**.  
+It replaces spreadsheets and email-based tracking with a **centralized platform** that improves recovery efficiency, visibility, and governance.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🔥 Implemented Features
 
-## React Compiler
+### ✅ Centralized Case Management
+- Unified dashboard for all overdue cases
+- Case allocation, status tracking, and closure
+- Clear ownership and audit-friendly flow
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### ✅ AI-Based Case Prioritization
+- One-click **“Analyze with AI”** action
+- AI assigns:
+  - Priority score (0–100)
+  - Recovery probability
+  - Recommended next action
+- Helps teams focus on **high-impact cases first**
 
-## Expanding the ESLint configuration
+### ✅ Predictive Recovery Insights
+- Estimated recovery likelihood per case
+- Risk-based segmentation (high value vs low recovery)
+- Data-driven decision support
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### ✅ Automated Workflow Simulation
+- Visual workflow stages:
+  - Assigned → In Progress → Follow-up → Escalated → Closed
+- Simulated SLA-driven progression
+- Demonstrates automation readiness
+
+### ✅ Natural Language Case Search
+- AI-powered search (e.g., *“High priority cases over $10K”*)
+- Instantly filters relevant cases
+- Improves usability for non-technical users
+
+### ✅ Real-Time Analytics Dashboard
+- Recovery trends and performance indicators
+- Case ageing and priority distribution
+- DCA-level performance visibility
+
+---
+
+## 🧠 AI & Technology Used
+
+- **Frontend**: React + Vite
+- **AI Engine**: Groq (LLaMA-based models)
+- **Analytics**: Real-time charts & insights
+- **Deployment**: Vercel
+- **Data**: Mock / Firebase-ready structure
+
+---
+
+## 🎯 Business Impact
+
+- Faster and smarter recovery decisions
+- Reduced manual effort and delays
+- Improved accountability and transparency
+- Scalable foundation for enterprise rollout
+
+---
+
+**Hackathon-ready. AI-powered. Enterprise-focused. **
